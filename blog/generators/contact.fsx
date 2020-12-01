@@ -3,7 +3,7 @@
 
 open Html
 
-let about = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nisi diam, vehicula quis blandit id, suscipit sed libero. Proin at diam dolor. In hac habitasse platea dictumst. Donec quis dui vitae quam eleifend dignissim non sed libero. In hac habitasse platea dictumst. In ullamcorper mollis risus, a vulputate quam accumsan at. Donec sed felis sodales, blandit orci id, vulputate orci."
+let contact = "[WIP] contact"
 
 let generate' (ctx : SiteContents) (_: string) =
   let siteInfo = ctx.TryGetValue<Globalloader.SiteInfo> ()
@@ -27,7 +27,7 @@ let generate' (ctx : SiteContents) (_: string) =
             div [Class "card article"] [
                 div [Class "card-content"] [
                     div [Class "content article-body"] [
-                        !! about
+                        !! contact
                     ]
                 ]
             ]
