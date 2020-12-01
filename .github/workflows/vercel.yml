@@ -1,0 +1,29 @@
+name: Vercel
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '3.1.101'
+      - run: ./fake.sh build -t Build
+      - uses: ./
+        id: vercel-action-production
+        if: github.event_name == 'push'
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID_ANGULAR }}
+          working-directory: blog/_public
+          vercel-args: '--prod '
