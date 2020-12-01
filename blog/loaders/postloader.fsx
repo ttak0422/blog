@@ -10,7 +10,6 @@ type Post = {
     file: string
     link : string
     title: string
-    author: string option
     published: System.DateTime option
     tags: string list
     content: string
@@ -70,7 +69,7 @@ let getContent (fileContent : string) =
 
     let summary = summary |> Array.skip 1 |> String.concat "\n"
     let content = content |> Array.skip 1 |> String.concat "\n"
-
+    
     Markdown.ToHtml(summary, markdownPipeline),
     Markdown.ToHtml(content, markdownPipeline)
 
@@ -87,7 +86,6 @@ let loadFile n =
     let link = "/" + System.IO.Path.Combine(contentDir, (n |> System.IO.Path.GetFileNameWithoutExtension) + ".html").Replace("\\", "/")
 
     let title = config |> Map.find "title" |> trimString
-    let author = config |> Map.tryFind "author" |> Option.map trimString
     let published = config |> Map.tryFind "published" |> Option.map (trimString >> System.DateTime.Parse)
 
     let tags =
@@ -100,7 +98,6 @@ let loadFile n =
     { file = file
       link = link
       title = title
-      author = author
       published = published
       tags = tags
       content = content
