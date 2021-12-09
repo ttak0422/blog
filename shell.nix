@@ -1,11 +1,7 @@
-let 
-  sources = import ./nix/sources.nix;
-  pkgs = import sources.nixpkgs {};
-in pkgs.mkShell {
-  buildInputs = with pkgs; [
-    (with dotnetCorePackages; combinePackages [ dotnet-sdk_3 dotnet-sdk_5 ])
-    nodejs
-    # keep this line if you use bash
-    bashInteractive
-  ];
-}
+# https://nixos.wiki/wiki/Flakes
+(import (let lock = builtins.fromJSON (builtins.readFile ./flake.lock);
+in fetchTarball {
+  url =
+    "https://github.com/edolstra/flake-compat/archive/${lock.nodes.flake-compat.locked.rev}.tar.gz";
+  sha256 = lock.nodes.flake-compat.locked.narHash;
+}) { src = ./.; }).shellNix
