@@ -11,13 +11,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Setup dotnet
-        uses: actions/setup-dotnet@v1
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install Nix
+        uses: cachix/install-nix-action@v10
+      - name: Setup Nix Shell
+      - uses: workflow/nix-shell-action@v1
         with:
-          dotnet-version: '3.1.101'
-      - run: ./fake.sh build -t Build
-      - uses: amondnet/vercel-action@v19
+          packages: hugo
+          script: |
+            hugo
+      - name: Vercel
+        uses: amondnet/vercel-action@v19
         id: vercel-action-production
         if: github.event_name == 'push'
         with:
@@ -25,5 +30,5 @@ jobs:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          working-directory: blog/_public
+          working-directory: public
           vercel-args: '--prod '
