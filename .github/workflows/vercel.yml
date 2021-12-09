@@ -13,10 +13,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Install Nix
-        uses: cachix/install-nix-action@v10
+      - name: Setup Nix
+        uses: cachix/install-nix-action@v16
+        with:
+          extra_nix_config: |
+            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
       - name: Setup Nix Shell
-      - uses: workflow/nix-shell-action@v1
+        uses: workflow/nix-shell-action@v1
         with:
           packages: hugo
           script: |
