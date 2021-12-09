@@ -476,3 +476,11 @@ MigrationBackup/
 # End of https://www.toptal.com/developers/gitignore/api/csharp
 
 .vercel
+
+.direnv
+
+resources
+
+public
+
+themes
