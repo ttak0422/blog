@@ -13,26 +13,19 @@
   outputs = { self, nixpkgs, flake-utils, ... }:
     let
       inherit (builtins) fetchTarball;
-      inherit (flake-utils.lib) eachDefaultSystem eachSystem allSystems;
-      # WIP......
-      # stack = fetchTarball {
-      #   url =
-      #     "https://github.com/CaiJimmy/hugo-theme-stack/archive/refs/heads/master.tar.gz";
-      #   sha256 = "12r53vmnfjv8140qnw7a3qhi0xy2lff3acfadliksv5kkjhm9kqi";
-      # };
+      inherit (flake-utils.lib) eachDefaultSystem mkApp;
     in eachDefaultSystem (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
         inherit (pkgs) mkShell runCommand callPackage;
-        stack = callPackage ./nix/hugo-theme-stack { };
-      in {
+        blog = callPackage ./nix/blog { };
+      in rec {
         devShell = mkShell {
           buildInputs = with pkgs; [ hugo nixfmt pre-commit ];
           shellHook = ''
-            STACK=themes/hugo-theme-stack
-            mkdir -p themes
-            ln -snf ${stack} $STACK
+            ${blog.shellHook}
           '';
         };
+        defaultPackage = blog.blogDrv;
       });
 }
