@@ -13,17 +13,16 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
       - name: Setup Nix
         uses: cachix/install-nix-action@v16
         with:
           extra_nix_config: |
             access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
-      - name: Setup Nix Shell
-        uses: workflow/nix-shell-action@v1
-        with:
-          packages: hugo
-          script: |
-            hugo
+      
+      - name: Nix Build
+        run: nix build
+      
       - name: Vercel
         uses: amondnet/vercel-action@v19
         id: vercel-action-production
@@ -33,5 +32,5 @@ jobs:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          working-directory: public
+          working-directory: result
           vercel-args: '--prod '
