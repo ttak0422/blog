@@ -5,8 +5,8 @@ let
     name = "hugo-theme-stack";
     src = builtins.fetchTarball {
       url =
-        " https://github.com/CaiJimmy/hugo-theme-stack/archive/refs/tags/v3.5.0.tar.gz";
-      sha256 = "1af4wr6y88iby0wh02vgldsirm968y270xpwlrspn9hkyvys3kfc";
+        "https://github.com/CaiJimmy/hugo-theme-stack/archive/359e4b34c1f96beeda472cddb54cea98522b2c14.tar.gz";
+      sha256 = "12r53vmnfjv8140qnw7a3qhi0xy2lff3acfadliksv5kkjhm9kqi";
     };
   };
 
