@@ -109,10 +109,10 @@ params:
 
         giscus:
             repo: ttak0422/blog
-            repoID:
-            category: General
-            categoryID:
-            mapping:
+            repoID: MDEwOlJlcG9zaXRvcnkzMTcxOTM1NzY=
+            category: Announcements
+            categoryID: DIC_kwDOEuf9aM4CANtT
+            mapping: pathname
             lightTheme:
             darkTheme:
             reactionsEnabled: 1
