@@ -3,10 +3,13 @@ author = "ttak0422"
 title = "IstioOperatorによるIstioのカスタム"
 date = "2020-12-23"
 categories = [
-    "C#",
-    "MagicOnion",
-    "Istio",
-    "k8s"
+    
+]
+tags = [
+  "CSharp",
+  "MagicOnion",
+  "Istio",
+  "k8s"
 ]
 +++
 
@@ -36,7 +39,7 @@ Istioだからどうこうということは，ほぼ無いですがサンプル
 
 今回使用したコードは以下に掲載しています．
 
-{{< figure src="https://github-link-card.s3.ap-northeast-1.amazonaws.com/ttak0422/IstioMagicOnionSample.png" title="Screenshot" class="center" width="480" link="https://github.com/ttak0422/IstioMagicOnionSample" target="_blank" rel="noopener" >}}
+{{< figure src="https://github-link-card.s3.ap-northeast-1.amazonaws.com/ttak0422/blog.png"  class="center" width="480" link="https://github.com/ttak0422/blog" target="_blank" rel="noopener" >}}
 
 ### 補足説明
 

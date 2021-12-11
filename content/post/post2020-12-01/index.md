@@ -5,7 +5,9 @@ published: 2020-12-01
 image: 2020-12-01-template.png
 description: Fornaxを触る
 categories:
-  - F#
+  - ブログ
+tags: 
+  - FSharp
   - Fornax
   - Blog
 ---
