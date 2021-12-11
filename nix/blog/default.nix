@@ -29,7 +29,7 @@ let
     buildPhase = ''
       mkdir themes
       ln -snf ${themeDrv} themes/${theme.name}
-      hugo
+      hugo --buildFuture
     '';
     installPhase = ''
       cp -r public $out
